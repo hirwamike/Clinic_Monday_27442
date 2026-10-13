@@ -1,0 +1,1229 @@
+{
+  "info": {
+    "_postman_id": "f4e1b9d0-a28c-4f1a-a2e9-quiz2clinic",
+    "name": "Kigali Clinic - Quiz 2 Backend",
+    "description": "Seed the database first, then run each requirement request. Some requests deliberately demonstrate validation errors. Change collection variables if your IDs differ.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "office101Id",
+      "value": "1"
+    },
+    {
+      "key": "office102Id",
+      "value": "2"
+    },
+    {
+      "key": "office103Id",
+      "value": "3"
+    },
+    {
+      "key": "office104Id",
+      "value": "4"
+    },
+    {
+      "key": "spec1Id",
+      "value": "1"
+    },
+    {
+      "key": "spec2Id",
+      "value": "2"
+    },
+    {
+      "key": "spec3Id",
+      "value": "3"
+    },
+    {
+      "key": "spec4Id",
+      "value": "4"
+    },
+    {
+      "key": "doctor1Id",
+      "value": "1"
+    },
+    {
+      "key": "doctor2Id",
+      "value": "2"
+    },
+    {
+      "key": "doctor3Id",
+      "value": "3"
+    },
+    {
+      "key": "patient1Id",
+      "value": "1"
+    },
+    {
+      "key": "patient2Id",
+      "value": "2"
+    },
+    {
+      "key": "patient3Id",
+      "value": "3"
+    },
+    {
+      "key": "patient4Id",
+      "value": "4"
+    },
+    {
+      "key": "patient5Id",
+      "value": "5"
+    },
+    {
+      "key": "appointment1Id",
+      "value": "1"
+    },
+    {
+      "key": "appointment2Id",
+      "value": "2"
+    },
+    {
+      "key": "prescriptionId",
+      "value": "replace-with-created-prescription-uuid"
+    }
+  ],
+  "item": [
+    {
+      "name": "00 - Seed data (run these first, in order)",
+      "item": [
+        {
+          "name": "Seed - Office 101",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/offices/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Consultation 101\",\n  \"officeNumber\": 101\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('office101Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Office 102",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/offices/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Consultation 102\",\n  \"officeNumber\": 102\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('office102Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Office 103",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/offices/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Consultation 103\",\n  \"officeNumber\": 103\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('office103Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Office 104",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/offices/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Free Office 104\",\n  \"officeNumber\": 104\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('office104Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Specialization Cardiology",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/specializations/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Cardiology\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('spec1Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Specialization Pediatrics",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/specializations/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Pediatrics\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('spec2Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Specialization Dermatology",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/specializations/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dermatology\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('spec3Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Specialization Neurology",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/specializations/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Neurology\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('spec4Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Doctor Giselle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/doctors/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Giselle\",\n  \"lastName\": \"Mugisha\",\n  \"phone\": \"0780000001\",\n  \"office\": {\n    \"id\": \"{{office101Id}}\"\n  },\n  \"specializations\": [\n    {\n      \"id\": \"{{spec1Id}}\"\n    },\n    {\n      \"id\": \"{{spec2Id}}\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('doctor1Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Doctor Daniel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/doctors/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Daniel\",\n  \"lastName\": \"Uwimana\",\n  \"phone\": \"0780000002\",\n  \"office\": {\n    \"id\": \"{{office102Id}}\"\n  },\n  \"specializations\": [\n    {\n      \"id\": \"{{spec1Id}}\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('doctor2Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Doctor Alice",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/doctors/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Alice\",\n  \"lastName\": \"Niyonzima\",\n  \"phone\": \"0780000003\",\n  \"office\": {\n    \"id\": \"{{office103Id}}\"\n  },\n  \"specializations\": [\n    {\n      \"id\": \"{{spec3Id}}\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('doctor3Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Patient Martha",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/patients/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Martha\",\n  \"lastName\": \"Uwase\",\n  \"ssNumber\": \"SS-1001\",\n  \"phone\": \"0781111001\",\n  \"email\": \"patient1@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('patient1Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Patient Eric",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/patients/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Eric\",\n  \"lastName\": \"Uwase\",\n  \"ssNumber\": \"SS-1002\",\n  \"phone\": \"0781111002\",\n  \"email\": \"patient2@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('patient2Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Patient Aline",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/patients/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Aline\",\n  \"lastName\": \"Nkurunziza\",\n  \"ssNumber\": \"SS-1003\",\n  \"phone\": \"0781111003\",\n  \"email\": \"patient3@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('patient3Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Patient Peter",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/patients/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Peter\",\n  \"lastName\": \"Habimana\",\n  \"ssNumber\": \"SS-1004\",\n  \"phone\": \"0781111004\",\n  \"email\": \"patient4@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('patient4Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Patient Grace",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/patients/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Grace\",\n  \"lastName\": \"Mukamana\",\n  \"ssNumber\": \"SS-1005\",\n  \"phone\": \"0781111005\",\n  \"email\": \"patient5@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('patient5Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Appointment 1",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-20\",\n  \"status\": \"SCHEDULED\",\n  \"notes\": \"Seed appointment 1\",\n  \"patient\": {\n    \"id\": \"{{patient1Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor1Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('appointment1Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Appointment 2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-22\",\n  \"status\": \"SCHEDULED\",\n  \"notes\": \"Seed appointment 2\",\n  \"patient\": {\n    \"id\": \"{{patient1Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor2Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('appointment2Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Appointment 3",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-30\",\n  \"status\": \"SCHEDULED\",\n  \"notes\": \"Seed appointment 3\",\n  \"patient\": {\n    \"id\": \"{{patient1Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor3Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('appointment3Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Appointment 4",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-21\",\n  \"status\": \"SCHEDULED\",\n  \"notes\": \"Seed appointment 4\",\n  \"patient\": {\n    \"id\": \"{{patient2Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor1Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('appointment4Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Appointment 5",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-23\",\n  \"status\": \"SCHEDULED\",\n  \"notes\": \"Seed appointment 5\",\n  \"patient\": {\n    \"id\": \"{{patient3Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor2Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('appointment5Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Appointment 6",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-24\",\n  \"status\": \"SCHEDULED\",\n  \"notes\": \"Seed appointment 6\",\n  \"patient\": {\n    \"id\": \"{{patient4Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor3Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('appointment6Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Appointment 7",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-25\",\n  \"status\": \"SCHEDULED\",\n  \"notes\": \"Seed appointment 7\",\n  \"patient\": {\n    \"id\": \"{{patient5Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor1Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('appointment7Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Appointment 8",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-26\",\n  \"status\": \"SCHEDULED\",\n  \"notes\": \"Seed appointment 8\",\n  \"patient\": {\n    \"id\": \"{{patient2Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor2Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('appointment8Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Appointment 9",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-27\",\n  \"status\": \"SCHEDULED\",\n  \"notes\": \"Seed appointment 9\",\n  \"patient\": {\n    \"id\": \"{{patient3Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor3Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('appointment9Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Seed - Appointment 10",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2026-10-28\",\n  \"status\": \"SCHEDULED\",\n  \"notes\": \"Seed appointment 10\",\n  \"patient\": {\n    \"id\": \"{{patient4Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor1Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code < 300) { let x=pm.response.json(); pm.collectionVariables.set('appointment10Id', x.id); }"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Quiz 2 requirements and bonus",
+      "item": [
+        {
+          "name": "A1 - Add specialization to doctor",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": "{{baseUrl}}/api/doctors/{{doctor2Id}}/specializations/{{spec2Id}}",
+            "description": ""
+          }
+        },
+        {
+          "name": "A2 - Remove specialization from doctor",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/doctors/{{doctor1Id}}/specializations/{{spec2Id}}",
+            "description": ""
+          }
+        },
+        {
+          "name": "A3 - List free offices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/offices/free",
+            "description": ""
+          }
+        },
+        {
+          "name": "A4 - Move doctor to office 104",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/doctors/{{doctor1Id}}/office?officeNumber=104",
+            "description": ""
+          }
+        },
+        {
+          "name": "B1 - Safe booking rejects past dates",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/appointments/save",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2020-01-01\",\n  \"status\": \"COMPLETED\",\n  \"notes\": \"Should reject\",\n  \"patient\": {\n    \"id\": \"{{patient1Id}}\"\n  },\n  \"doctor\": {\n    \"id\": \"{{doctor1Id}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "B2 - Status flow (confirm)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/appointments/{{appointment1Id}}/status?status=CONFIRMED",
+            "description": ""
+          }
+        },
+        {
+          "name": "B3 - Reschedule appointment",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/appointments/{{appointment2Id}}/reschedule?newDate=2026-11-15",
+            "description": ""
+          }
+        },
+        {
+          "name": "B2 - Status flow (complete)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/appointments/{{appointment1Id}}/status?status=COMPLETED",
+            "description": ""
+          }
+        },
+        {
+          "name": "C1 - Save prescription (requires completed appointment)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/prescriptions/save?appointmentId={{appointment1Id}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"medicineName\": \"Amoxicillin\",\n  \"dosage\": \"1 tablet, 3 times a day\",\n  \"durationDays\": 7\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "C2 - Prescriptions by appointment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/prescriptions/appointment/{{appointment1Id}}",
+            "description": ""
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Appointment prescription list returned', function () { pm.expect(pm.response.code).to.be.oneOf([200, 404]); });",
+                  "if (pm.response.code === 200) { const rows = pm.response.json(); if (rows.length > 0) pm.collectionVariables.set('prescriptionId', rows[0].id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "C3 - Prescription history by patient SS number",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/prescriptions/patient/SS-1001",
+            "description": ""
+          }
+        },
+        {
+          "name": "C4 - Update prescription",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/prescriptions/update/{{prescriptionId}}",
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"medicineName\": \"Paracetamol\",\n  \"dosage\": \"1 tablet twice daily\",\n  \"durationDays\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "C4 - Delete prescription",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/prescriptions/delete/{{prescriptionId}}",
+            "description": ""
+          }
+        },
+        {
+          "name": "D1 - Doctor agenda",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/doctors/{{doctor1Id}}/agenda?date=2026-10-20",
+            "description": ""
+          }
+        },
+        {
+          "name": "D2 - Patient upcoming appointments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/patients/SS-1001/upcoming",
+            "description": ""
+          }
+        },
+        {
+          "name": "D3 - Search doctors by name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/doctors/search?name=gis",
+            "description": ""
+          }
+        },
+        {
+          "name": "D4 - Dashboard summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/dashboard/summary",
+            "description": ""
+          }
+        },
+        {
+          "name": "Bonus - Top prescribed medicines",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/prescriptions/stats/top-medicines",
+            "description": ""
+          }
+        },
+        {
+          "name": "Bonus - Doctor workload",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/doctors/workload?start=2026-10-01&end=2026-10-31",
+            "description": ""
+          }
+        },
+        {
+          "name": "Error demo - Invalid final status transition",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/api/appointments/{{appointment1Id}}/status?status=SCHEDULED",
+            "description": ""
+          }
+        },
+        {
+          "name": "Error demo - Missing doctor specialization owner",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": "{{baseUrl}}/api/doctors/999999/specializations/1",
+            "description": ""
+          }
+        }
+      ]
+    }
+  ]
+}

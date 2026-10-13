@@ -1,0 +1,37 @@
+package kigali.clinic.rw.repository;
+
+import kigali.clinic.rw.domain.Appointment;
+import kigali.clinic.rw.domain.AppointmentStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Collection;
+
+public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
+    List<Appointment> findByStatusOrderByAppointmentDateAsc(AppointmentStatus status);
+    List<Appointment> findByAppointmentDateBetweenOrderByAppointmentDateAsc(LocalDate start, LocalDate end);
+    boolean existsByDoctorIdAndAppointmentDateAndStatusNot(Long doctorId, LocalDate appointmentDate, AppointmentStatus status);
+
+    @Query("SELECT a.status, COUNT(a) FROM Appointment a GROUP BY a.status")
+    List<Object[]> countByStatus();
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Appointment a SET a.status = kigali.clinic.rw.domain.AppointmentStatus.CANCELLED WHERE a.doctor.id = :doctorId AND a.appointmentDate = :date AND a.status <> kigali.clinic.rw.domain.AppointmentStatus.COMPLETED")
+    int cancelDoctorDay(@Param("doctorId") Long doctorId, @Param("date") LocalDate date);
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Appointment a WHERE a.status = kigali.clinic.rw.domain.AppointmentStatus.CANCELLED AND a.appointmentDate < :date")
+    int deleteCancelledBefore(@Param("date") LocalDate date);
+
+    List<Appointment> findByDoctorIdAndAppointmentDateAndStatusNotOrderByAppointmentDateAsc(Long doctorId, LocalDate date, AppointmentStatus status);
+    List<Appointment> findByPatientSsNumberAndAppointmentDateGreaterThanEqualAndStatusInOrderByAppointmentDateAsc(String ssNumber, LocalDate date, Collection<AppointmentStatus> statuses);
+    long countByAppointmentDate(LocalDate date);
+    long countByStatus(AppointmentStatus status);
+    Page<Appointment> findAll(Pageable pageable);
+}
